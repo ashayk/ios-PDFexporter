@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)dealloc {
-    CGPDFDocumentRelease(self.imageDocument);
+    CGPDFDocumentRelease(_imageDocument);
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)loadImage {
-    CGPDFDocumentRelease(self.imageDocument);
+    CGPDFDocumentRelease(_imageDocument);
     
     //NSString *fileExtension = [self.PDFFileName pathExtension];
     //NSAssert([fileExtension length] == 0 || ([fileExtension length] > 0 && [[fileExtension lowercaseString] compare:@"pdf"] == NSOrderedSame), @"Only PDF files are supported.");
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
         NSURL *PDFDocumentURL = [self.bundle URLForResource:PDFFile withExtension:@"pdf"];
         NSAssert(PDFDocumentURL != nil, @"Unable to find PDF in main bundle");
         
-        self.imageDocument = CGPDFDocumentCreateWithURL((__bridge CFURLRef)PDFDocumentURL);
+        _imageDocument = CGPDFDocumentCreateWithURL((__bridge CFURLRef)PDFDocumentURL);
     }
 }
 
